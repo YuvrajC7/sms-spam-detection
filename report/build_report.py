@@ -2,6 +2,10 @@
 from pathlib import Path
 import json
 import pandas as pd
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.oxml import OxmlElement
@@ -13,6 +17,28 @@ HERE=Path(__file__).resolve().parent
 PROJECT=HERE.parent/'project'
 m=json.loads((PROJECT/'results/metrics.json').read_text())
 w=pd.read_csv(PROJECT/'results/word_probabilities.csv')
+FIGURES=HERE/'figures'
+FIGURES.mkdir(exist_ok=True)
+plt.rcParams.update({'font.family':'DejaVu Sans','font.size':11,'axes.spines.top':False,
+                     'axes.spines.right':False,'figure.dpi':150})
+f,ax=plt.subplots(figsize=(7,4))
+bars=ax.bar(['Ham','Spam'],[m['counts']['ham'],m['counts']['spam']],color=['#555555','#BBBBBB'],edgecolor='black',width=.55)
+ax.bar_label(bars,padding=4)
+ax.set(ylabel='Number of unique messages',title='Class distribution after duplicate removal',ylim=(0,m['counts']['ham']*1.15))
+f.tight_layout();f.savefig(FIGURES/'class_distribution.png');plt.close(f)
+cm=np.array(m['confusion_matrix'])
+f,ax=plt.subplots(figsize=(6,4.2))
+ax.imshow(cm,cmap='Greys')
+for (i,j),value in np.ndenumerate(cm):
+    ax.text(j,i,str(value),ha='center',va='center',fontsize=19,color='white' if value>cm.max()/2 else 'black')
+ax.set(xticks=[0,1],yticks=[0,1],xticklabels=['Ham','Spam'],yticklabels=['Ham','Spam'],xlabel='Predicted label',ylabel='Actual label',title='Held-out test confusion matrix')
+f.tight_layout();f.savefig(FIGURES/'confusion_matrix.png');plt.close(f)
+f,ax=plt.subplots(figsize=(7,4))
+bars=ax.bar(w.word,w.p_spam_given_word,color='#BBBBBB',edgecolor='black')
+ax.bar_label(bars,labels=[f'{v:.1%}' for v in w.p_spam_given_word],padding=4)
+ax.axhline(m['p_spam'],linestyle='--',color='black',label=f"Prior P(Spam) = {m['p_spam']:.1%}")
+ax.set(ylim=(0,1.12),ylabel='Empirical conditional probability',title='How informative is each suspicious word?')
+ax.legend(loc='upper right');f.tight_layout();f.savefig(FIGURES/'word_probabilities.png');plt.close(f)
 doc=Document()
 sec=doc.sections[0]
 sec.page_width=Inches(8.27); sec.page_height=Inches(11.69)
@@ -67,9 +93,9 @@ def table(headers,rows,widths=None):
             pr=c._tc.get_or_add_tcPr()
             borders=OxmlElement('w:tcBorders')
             for edge in ['top','left','bottom','right']:
-                e=OxmlElement('w:'+edge); e.set(qn('w:val'),'single'); e.set(qn('w:sz'),'4'); e.set(qn('w:color'),'D9D9D9'); borders.append(e)
+                e=OxmlElement('w:'+edge); e.set(qn('w:val'),'single'); e.set(qn('w:sz'),'6'); e.set(qn('w:color'),'000000'); borders.append(e)
             pr.append(borders)
-            shade=OxmlElement('w:shd'); shade.set(qn('w:fill'),'18324D' if ri==0 else ('F0F4F7' if ri%2==0 else 'FFFFFF')); pr.append(shade)
+            shade=OxmlElement('w:shd'); shade.set(qn('w:val'),'clear'); shade.set(qn('w:fill'),'FFFFFF'); pr.append(shade)
             margins=OxmlElement('w:tcMar')
             for edge in ['top','bottom','left','right']:
                 e=OxmlElement('w:'+edge); e.set(qn('w:w'),'85'); e.set(qn('w:type'),'dxa'); margins.append(e)
@@ -79,14 +105,14 @@ def table(headers,rows,widths=None):
                 para.paragraph_format.line_spacing=1
                 for r in para.runs:
                     r.font.size=Pt(9.5); r.bold=(ri==0)
-                    r.font.color.rgb=RGBColor.from_string('FFFFFF' if ri==0 else '000000')
+                    r.font.color.rgb=RGBColor(0,0,0)
     spacer=p(''); spacer.paragraph_format.space_after=Pt(0)
     spacer.paragraph_format.line_spacing=Pt(3)
     spacer.paragraph_format.space_before=Pt(0)
     return t
 def fig(name,caption,width=6.2):
     para=doc.add_paragraph(); para.alignment=WD_ALIGN_PARAGRAPH.CENTER
-    para.add_run().add_picture(str(PROJECT/'results'/name),width=Inches(width))
+    para.add_run().add_picture(str(FIGURES/name),width=Inches(width))
     para.paragraph_format.space_after=Pt(3)
     para.paragraph_format.keep_with_next=True
     c=p(caption); c.paragraph_format.space_after=Pt(8)
@@ -311,5 +337,10 @@ table(['Required deliverable','Location in the submission'],[
 ('GitHub submission address','https://github.com/YuvrajC7/sms-spam-detection')],[2.6,4])
 h('Presentation readiness')
 p('Before class, launch the desktop demo, read the worked Bayes example and verify the three central numbers: 5,160 cleaned messages, 642 spam messages and 1,032 held-out test messages. Be ready to distinguish empirical word probabilities from model posteriors, explain both error types and show why the always-ham baseline is insufficient. The separate demo guide provides a timed presentation sequence and short viva answers.')
+for root in [doc.styles.element,doc.element,sec.footer._element]:
+    for color in root.xpath('.//w:color'):
+        color.attrib.clear()
+        color.set(qn('w:val'),'auto')
 doc.save(HERE/'SMS_Spam_Detection_Report.docx')
 print('Report created:',HERE/'SMS_Spam_Detection_Report.docx')
+
