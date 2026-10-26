@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+project/data/SMSSpamCollection -text
+project/data/UCI_README.txt -text
+*.png binary
+*.docx binary
+*.pdf binary
+*.joblib binary

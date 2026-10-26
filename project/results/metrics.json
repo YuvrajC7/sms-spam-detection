@@ -1,0 +1,132 @@
+{
+  "audit": {
+    "raw_rows": 5574,
+    "missing_rows": 0,
+    "blank_rows": 0,
+    "duplicate_rows": 414,
+    "conflicting_messages": 0,
+    "cleaned_rows": 5160,
+    "raw_counts": {
+      "ham": 4827,
+      "spam": 747
+    },
+    "sha256": "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d"
+  },
+  "counts": {
+    "ham": 4518,
+    "spam": 642
+  },
+  "p_spam": 0.12441860465116279,
+  "p_ham": 0.8755813953488372,
+  "expectation": 0.12441860465116279,
+  "variance": 0.10893861546782044,
+  "train_size": 4128,
+  "test_size": 1032,
+  "train_counts": {
+    "ham": 3614,
+    "spam": 514
+  },
+  "test_counts": {
+    "ham": 904,
+    "spam": 128
+  },
+  "vocabulary_size": 7673,
+  "random_state": 42,
+  "confusion_matrix": [
+    [
+      898,
+      6
+    ],
+    [
+      12,
+      116
+    ]
+  ],
+  "classification_report": {
+    "Ham": {
+      "precision": 0.9868131868131869,
+      "recall": 0.9933628318584071,
+      "f1-score": 0.9900771775082691,
+      "support": 904.0
+    },
+    "Spam": {
+      "precision": 0.9508196721311475,
+      "recall": 0.90625,
+      "f1-score": 0.928,
+      "support": 128.0
+    },
+    "accuracy": 0.9825581395348837,
+    "macro avg": {
+      "precision": 0.9688164294721672,
+      "recall": 0.9498064159292036,
+      "f1-score": 0.9590385887541346,
+      "support": 1032.0
+    },
+    "weighted avg": {
+      "precision": 0.9823488749146393,
+      "recall": 0.9825581395348837,
+      "f1-score": 0.9823776826235225,
+      "support": 1032.0
+    }
+  },
+  "accuracy": 0.9825581395348837,
+  "baseline_accuracy": 0.875968992248062,
+  "versions": {
+    "python": "3.12.14",
+    "sklearn": "1.9.1",
+    "pandas": "3.0.1",
+    "numpy": "2.3.5",
+    "joblib": "1.6.0"
+  },
+  "demo": {
+    "prediction": "Spam",
+    "p_spam": 0.999999801880561,
+    "p_ham": 1.981194354927417e-07,
+    "known_tokens": 8,
+    "total_tokens": 8,
+    "warning": "",
+    "contributions": [
+      {
+        "word": "claim",
+        "count": 1,
+        "log_odds": 5.3448376726049975
+      },
+      {
+        "word": "prize",
+        "count": 1,
+        "log_odds": 5.17048428546022
+      },
+      {
+        "word": "congratulations",
+        "count": 1,
+        "log_odds": 3.3299346520627333
+      },
+      {
+        "word": "free",
+        "count": 1,
+        "log_odds": 2.345925746133627
+      },
+      {
+        "word": "won",
+        "count": 1,
+        "log_odds": 2.04900080660067
+      },
+      {
+        "word": "you",
+        "count": 1,
+        "log_odds": -0.9551500374189184
+      },
+      {
+        "word": "now",
+        "count": 1,
+        "log_odds": 0.4472257669121369
+      },
+      {
+        "word": "have",
+        "count": 1,
+        "log_odds": -0.3475161062275802
+      }
+    ],
+    "prior_log_odds": -1.9503472056970077
+  }
+}

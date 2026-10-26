@@ -1,0 +1,19 @@
+source_line,label,message,target,message_id,prediction,p_spam,error_type
+4730,ham,I (Career Tel) have added u as a contact on INDYAROCKS.COM to send FREE SMS. To remove from phonebook - sms NO to  &lt;#&gt;,0,93e6a5700cd9abc1,1,0.9678167696290847,False positive
+1501,spam,"SMS. ac JSco: Energy is high, but u may not know where 2channel it. 2day ur leadership skills r strong. Psychic? Reply ANS w/question. End? Reply END JSCO",1,dfe474d84e6a3951,0,0.3791522777188011,False negative
+3361,spam,Sorry I missed your call let's talk when you have the time. I'm on 07090201529,1,1edb4f65a36a2bba,0,2.180240123964166e-06,False negative
+4863,ham,Nokia phone is lovly..,0,f60a166b5b920e93,1,0.9378888618620456,False positive
+3133,spam,"LookAtMe!: Thanks for your purchase of a video clip from LookAtMe!, you've been charged 35p. Think you can do better? Why not send a video in a MMSto 32323.",1,1e1693f1efb365cd,0,0.0020679272159801415,False negative
+685,spam,Hi I'm sue. I am 20 years old and work as a lapdancer. I love sex. Text me live - I'm i my bedroom now. text SUE to 89555. By TextOperator G2 1DA 150ppmsg 18+,1,3bdfa456ac713fd2,0,0.08297527071316509,False negative
+2403,spam,Babe: U want me dont u baby! Im nasty and have a thing 4 filthyguys. Fancy a rude time with a sexy bitch. How about we go slo n hard! Txt XXX SLO(4msgs),1,b44c5b43efd37886,0,5.045376183456802e-08,False negative
+4601,ham,Have you laid your airtel line to rest?,0,c1048c73e0260970,1,0.8711152521386508,False positive
+4257,spam,Block Breaker now comes in deluxe format with new features and great graphics from T-Mobile. Buy for just £5 by replying GET BBDELUXE and take the challenge,1,7d87f2ded279ff99,0,0.006626913112053633,False negative
+4299,spam,thesmszone.com lets you send free anonymous and masked messages..im sending this message from there..do you see the potential for abuse???,1,b5e52a8112858d33,0,0.000793396396866689,False negative
+3891,ham,Unlimited texts. Limited minutes.,0,9a11441d28563878,1,0.8595555510759643,False positive
+2970,ham,"Mostly sports type..lyk footbl,crckt..",0,0e9b5f746b96c523,1,0.5198918676583953,False positive
+4623,ham,"Received, understood n acted upon!",0,3d55896612eb6349,1,0.5082715410189416,False positive
+1459,spam,CLAIRE here am havin borin time & am now alone U wanna cum over 2nite? Chat now 09099725823 hope 2 C U Luv CLAIRE xx Calls£1/minmoremobsEMSPOBox45PO139WA,1,2e62ecbf03c475f4,0,0.00302620130484063,False negative
+5373,spam,dating:i have had two of these. Only started after i sent a text to talk sport radio last week. Any connection do you think or coincidence?,1,c3b714179a7fc0cd,0,9.569286110816732e-05,False negative
+2431,spam,Guess who am I?This is the first time I created a web page WWW.ASJESUS.COM read all I wrote. I'm waiting for your opinions. I want to be your friend 1/1,1,ae540b1a6a47236b,0,0.07390921360055917,False negative
+4950,spam,"Hi this is Amy, we will be sending you a free phone number in a couple of days, which will give you an access to all the adult parties...",1,95ba88c937cdf7e9,0,1.993396197868276e-06,False negative
+4201,spam,"cmon babe, make me horny, *turn* me on! Txt me your fantasy now babe -) Im hot, sticky and need you now. All replies cost £1.50. 2 cancel send STOP",1,316e09bcb2b3ebc6,0,0.10896809877957618,False negative
