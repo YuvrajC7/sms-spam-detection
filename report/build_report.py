@@ -341,6 +341,8 @@ for root in [doc.styles.element,doc.element,sec.footer._element]:
     for color in root.xpath('.//w:color'):
         color.attrib.clear()
         color.set(qn('w:val'),'auto')
+from format_repository_link import format_repository_link
+format_repository_link(doc)
 doc.save(HERE/'SMS_Spam_Detection_Report.docx')
 print('Report created:',HERE/'SMS_Spam_Detection_Report.docx')
 
